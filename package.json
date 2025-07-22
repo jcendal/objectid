@@ -1,17 +1,17 @@
 {
-  "name": "@jcendal/objectid-lite",
-  "version": "1.0.0",
+  "name": "@jcendal/objectid",
+  "version": "1.0.1",
   "description": "Lightweight TypeScript library for generating MongoDB-compatible ObjectId strings in the browser. It produces 12-byte identifiers in both hexadecimal (24-character) and compact base64-like formats. Designed for frontend use, it requires no dependencies and uses modern Web APIs like crypto.getRandomValues for secure randomness.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "start": "ts-node src/main.ts",
     "build": "rm -rf lib && webpack && tsc && npm run bundle:dts && mv lib/src/index.d.ts lib/index.d.ts && rm -rf lib/src",
-    "bundle:dts": "dts-bundle --name @jcendal/objectid-lite --main lib/src/index.d.ts --out index.d.ts --removeSource"
+    "bundle:dts": "dts-bundle --name @jcendal/objectid --main lib/src/index.d.ts --out index.d.ts --removeSource"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:jcendal/objectid-lite.git"
+    "url": "git@github.com:jcendal/objectid.git"
   },
   "keywords": [
     "mongodb",

@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './lib'),
     filename: 'index.js',
-    library: '@jcendal/objectid-lite',
+    library: '@jcendal/objectid',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     libraryExport: 'default'
