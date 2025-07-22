@@ -115,8 +115,8 @@ export class ObjectId {
    * @param time Optional Unix timestamp (seconds). Defaults to now.
    */
   static hex(timestamp?: number): string {
-    const buf = this.create({ timestamp });
-    return this.toHex(buf);
+    const buf = ObjectId.create({ timestamp });
+    return ObjectId.toHex(buf);
   }
 
   /**
@@ -125,10 +125,10 @@ export class ObjectId {
    * @param chars Optional 64-character alphabet string.
    */
   static slim(timestamp?: number, chars?: string): string {
-    const buf = this.create({ timestamp });
-    return this.toSlim(buf, chars ?? DEFAULT_CHARS);
+    const buf = ObjectId.create({ timestamp });
+    return ObjectId.toSlim(buf, chars ?? DEFAULT_CHARS);
   }
 }
 
-// Default export: hex string generator
+// Default export directo al método estático hex:
 export default ObjectId.hex;
