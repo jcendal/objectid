@@ -1,6 +1,6 @@
 {
 	"name": "@jcendal/objectid",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Lightweight TypeScript library for generating MongoDB-compatible ObjectId strings in the browser. It produces 12-byte identifiers in both hexadecimal (24-character) and compact base64-like formats. Designed for frontend use, it requires no dependencies and uses modern Web APIs like crypto.getRandomValues for secure randomness.",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",

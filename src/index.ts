@@ -1,6 +1,10 @@
-// Re-exporta el default de objectid.ts
-export { default } from './objectid';
+import hex from './objectid';
+import { ObjectId } from './objectid';
+import type { ObjectIdOptions } from './types';
 
-// Re-exporta la clase y el tipo
-export { ObjectId } from './objectid';
-export type { ObjectIdOptions } from './types';
+// Default export: la función hex
+export default hex;
+// Named export: la clase
+export { ObjectId };
+// Named export: el tipo
+export type { ObjectIdOptions };
