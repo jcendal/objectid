@@ -20,6 +20,7 @@
   ],
   "author": "Jorge Cendal <jorgecendal95@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/jcendal/objectid",
   "readmeFilename": "README.md",
   "devDependencies": {
     "dts-bundle": "^0.7.3",
