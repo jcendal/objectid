@@ -11,7 +11,6 @@ module.exports = {
     library: '@jcendal/objectid',
     libraryTarget: 'umd',
     umdNamedDefine: true,
-    libraryExport: 'default'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
