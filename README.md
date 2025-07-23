@@ -14,64 +14,78 @@ A **lightweight ObjectId generator for frontend applications**, designed to mimi
 
 ## 📦 Installation
 
-This utility is self-contained and can be copied directly into any frontend TypeScript project. No NPM package required.
+Run `npm install @jcendal/objectid` to add it to your project. Then import and use it as needed.
 
 ## 📚 Usage
 
-### Import
+### Import the default hex-generator function or the full ObjectId class for more control
 
 ```ts
-import ObjectIdGenerator from '@jcendal/objectid-litte';
+import objectIdHex from '@jcendal/objectid';
+```
+
+```ts
+import { ObjectId } from '@jcendal/objectid';
 ```
 
 ### Generate a standard hex string ObjectId
 
 ```ts
-const objectId = ObjectIdGenerator.hex();
-console.log(objectId); // e.g. "64e6f4b83fb0f83c1b3726f0"
+const id = objectIdHex();
+console.log(id); // e.g. "64e6f4b83fb0f83c1b3726f0"
+```
+
+Or via the class:
+
+```ts
+const id = ObjectId.hex();
+console.log(id); // e.g. "64e6f4b83fb0f83c1b3726f0"
 ```
 
 ### Generate a slim string ObjectId (base64-like)
 
 ```ts
-const slimId = ObjectIdGenerator.slim();
+const slimId = ObjectId.slim();
 console.log(slimId); // e.g. "-V9MYwMf_OUCoEBuZ1Yv"
 ```
 
-### Generate with a specific timestamp (Unix time in seconds)
+### Inject a specific timestamp (Unix time in seconds)
 
 ```ts
 const ts = Math.floor(Date.now() / 1000) - 3600; // 1 hour ago
-const objectId = ObjectIdGenerator.hex(ts);
+const oldHex = objectIdHex(ts);
+const oldSlim = ObjectId.slim(ts);
 ```
 
-### Use a custom alphabet for slim encoding
+### Use a custom 64-character alphabet for slim encoding
 
 ```ts
 const customAlphabet =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-const customSlimId = ObjectIdGenerator.slim(undefined, customAlphabet);
+const customSlimId = ObjectId.slim(undefined, customAlphabet);
 ```
 
 ## 🛠 API
 
-### `ObjectIdGenerator.generate(time?: number): Uint8Array`
+### Methods
+
+#### `ObjectId.create(options?: { timestamp?: number }): Uint8Array`
 
 Generates a raw 12-byte ObjectId. If `time` is provided (Unix timestamp in seconds), it will be used as the creation time.
 
-### `ObjectIdGenerator.toHex(buffer: Uint8Array): string`
+#### `ObjectId.toHex(buffer: Uint8Array): string`
 
 Converts a 12-byte ObjectId into a 24-character hexadecimal string.
 
-### `ObjectIdGenerator.toSlim(buffer: Uint8Array, chars: string = DEFAULT_CHARS): string`
+#### `ObjectId.toSlim(buffer: Uint8Array, chars?: string): string`
 
-Encodes the 12-byte ObjectId into a base64-like string using a 64-character alphabet.
+Encodes a 12-byte buffer into a slim (base64-like) string. Supply a 64-character chars alphabet to customize.
 
-### `ObjectIdGenerator.hex(time?: number): string`
+#### `ObjectId.hex(timestamp?: number): string`
 
 Returns a 24-character hex string ObjectId. Optionally takes a Unix timestamp.
 
-### `ObjectIdGenerator.slim(time?: number, chars?: string): string`
+#### `ObjectId.slim(timestamp?: number, chars?: string): string`
 
 Returns a slim-encoded ObjectId using the default or custom 64-character alphabet. Optionally takes a Unix timestamp.
 
@@ -83,8 +97,8 @@ The structure of the generated ObjectId mimics MongoDB’s format:
 | 4 bytes timestamp | 3 bytes machine ID | 2 bytes process ID | 3 bytes counter |
 ```
 
-- **Machine ID**: Random per module load
-- **Process ID**: Simulated with 2 random bytes
+- **Machine ID**: Random 3 bytes per module load
+- **Process ID**: Simulated with 2 random bytes per instance
 - **Counter**: 3-byte integer initialized randomly and incremented per ObjectId
 
 ## 📄 License
